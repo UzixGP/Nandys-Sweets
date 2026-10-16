@@ -1,0 +1,191 @@
+import type { Dictionary } from "./es";
+
+export const en: Dictionary = {
+  meta: {
+    title: "Nandy's Sweets | Homemade Cakes & Desserts",
+    description:
+      "Custom cakes, chocoflan, gelatin mosaic and homemade desserts made with love for your celebrations.",
+  },
+  nav: {
+    home: "Home",
+    menu: "Menu",
+    customCakes: "Custom Cakes",
+    about: "About",
+    contact: "Contact",
+    openMenu: "Menu",
+    closeMenu: "Close menu",
+    orderCta: "Order on WhatsApp",
+    orderCtaShort: "Order",
+    switchLanguage: "Español",
+    switchLanguageAria: "Switch to Spanish",
+  },
+  hero: {
+    eyebrow: "Homemade, with love",
+    title: "Sweet Moments, Made with Love.",
+    subtitle:
+      "From beautiful custom cakes to delicious homemade desserts, Nandy's Sweets brings a little extra sweetness to every celebration.",
+    primaryCta: "Explore Our Sweets",
+    secondaryCta: "Request a Custom Cake",
+  },
+  featured: {
+    eyebrow: "House favorites",
+    title: "Our Sweets",
+    subtitle: "Handmade desserts, one by one, for your special moments.",
+    viewAll: "See the full menu",
+  },
+  categories: {
+    title: "Browse by category",
+  },
+  product: {
+    ask: "Ask",
+    askAria: "Ask about {name} on WhatsApp",
+    quote: "Get a quote",
+    quoteAria: "Get a quote for {name}",
+    priceOnRequest: "Price on request",
+    whatsappMessage:
+      "Hi Nandy's Sweets! I'm interested in: {name}. Could you tell me about availability and price?",
+  },
+  customPromo: {
+    eyebrow: "Made just for you",
+    title: "Celebrating something special?",
+    body: "Tell us your idea: the date, how many guests and the style you're dreaming of. We'll design your cake and send you a personalized quote.",
+    cta: "Request my cake",
+  },
+  aboutTeaser: {
+    eyebrow: "Nandy's Sweets",
+    title: "Made with care, not mass-produced",
+    body: "Every dessert is prepared with dedication, creativity and attention to detail. It's not a mass-produced product: it's made thinking of you and your celebration.",
+    cta: "Get to know us",
+  },
+  contactStrip: {
+    title: "Have an order in mind?",
+    body: "Message us on WhatsApp and we'll gladly help with your order or questions.",
+    whatsapp: "Message us on WhatsApp",
+    email: "Send an email",
+    instagram: "Instagram",
+    genericMessage: "Hi Nandy's Sweets! I have a question:",
+  },
+  menuPage: {
+    eyebrow: "Menu",
+    title: "Our Menu",
+    subtitle:
+      "Everything is made to order. Tap “Ask” on any dessert to check availability and price on WhatsApp.",
+    jumpTo: "Jump to category",
+  },
+  customPage: {
+    eyebrow: "Custom Cakes",
+    title: "Your cake, your way",
+    subtitle:
+      "Birthdays, weddings, baby showers, graduations… Tell us what you're celebrating and we'll create a one-of-a-kind cake for you.",
+    stepsTitle: "How it works",
+    steps: [
+      {
+        title: "Share your idea",
+        body: "Fill out the form with the date, servings, flavor and your inspiration.",
+      },
+      {
+        title: "We review and quote",
+        body: "We review your request and send you a price based on the design, size and details.",
+      },
+      {
+        title: "Confirm your order",
+        body: "If you like the quote, we'll send you the instructions to confirm your order.",
+      },
+      {
+        title: "Time to celebrate!",
+        body: "We'll coordinate the pickup date and time for your cake.",
+      },
+    ],
+    pricingNote:
+      "Every cake is unique: pricing depends on the design, number of servings and complexity.",
+    formTitle: "Request your quote",
+    formSubtitle: "The more details you share, the more accurate your quote will be.",
+  },
+  form: {
+    name: "Your name",
+    phone: "Phone",
+    date: "Pickup date",
+    servings: "Number of servings",
+    flavor: "Preferred flavor",
+    flavorPlaceholder: "E.g. vanilla, chocolate, tres leches…",
+    size: "Approximate size or height",
+    sizePlaceholder: "E.g. 2 tiers, 8 inches…",
+    budget: "Approximate budget",
+    budgetPlaceholder: "E.g. $80",
+    details: "Design and special instructions",
+    detailsPlaceholder: "Colors, theme, message on the cake, allergies…",
+    optional: "(optional)",
+    photoNote:
+      "Have a reference photo? Attach it in the WhatsApp chat after sending your request.",
+    submitWhatsapp: "Send on WhatsApp",
+    submitEmail: "Send by email",
+    errors: {
+      required: "This field is required.",
+      dateFuture: "Choose a date from today onward.",
+      servings: "Enter a valid number of servings.",
+      summary: "Please check the highlighted fields to continue.",
+    },
+    success: {
+      title: "All set! We opened your request",
+      body: "Check the WhatsApp or email window and press send. We'll get back to you with a quote as soon as possible.",
+      note: "Your order is confirmed only once we agree on the details and price together.",
+      again: "Make another request",
+    },
+    message: {
+      intro: "Hi Nandy's Sweets! I'd like a quote for a custom cake:",
+      emailSubject: "Custom cake request",
+    },
+  },
+  policies: {
+    title: "Payments & deposit",
+    deposit:
+      "A 50% deposit is required to confirm your order; the remaining 50% is due at pickup.",
+    methods: "We accept Zelle, PayPal and cash.",
+  },
+  aboutPage: {
+    eyebrow: "About",
+    title: "Homemade sweetness",
+    intro:
+      "At Nandy's Sweets we believe every celebration deserves a special dessert. That's why every order is prepared with care, creativity and attention to detail.",
+    values: [
+      {
+        title: "Handmade",
+        body: "Every dessert is made to order, in small batches.",
+      },
+      {
+        title: "Attention to detail",
+        body: "We care about the flavor and presentation of every order.",
+      },
+      {
+        title: "Made for you",
+        body: "We listen to your idea and turn it into something unique.",
+      },
+    ],
+    cta: "See the menu",
+  },
+  contactPage: {
+    eyebrow: "Contact",
+    title: "Let's talk about your order",
+    subtitle: "The fastest way to reach us is on WhatsApp.",
+    whatsappTitle: "WhatsApp",
+    whatsappBody: "Orders, quotes and questions.",
+    emailTitle: "Email",
+    emailBody: "Prefer email? That works too.",
+    instagramTitle: "Instagram",
+    instagramBody: "See our latest creations.",
+  },
+  footer: {
+    tagline: "Homemade cakes and desserts for your special moments.",
+    explore: "Explore",
+    contact: "Contact",
+    rights: "All rights reserved.",
+  },
+  floating: {
+    aria: "Message us on WhatsApp",
+  },
+  notFound: {
+    title: "Page not found",
+    body: "Looks like someone already ate this dessert.",
+    cta: "Back to home",
+  },
+};

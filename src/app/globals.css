@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Nandy's Sweets design tokens */
+@theme {
+  --color-pink: #f8c8dc;
+  --color-pink-deep: #ec9fc0;
+  --color-blue: #c9eaf3;
+  --color-blue-deep: #9fd6e6;
+  --color-yellow: #fff0b3;
+  --color-yellow-deep: #ffe17a;
+  --color-cream: #fff9f2;
+  --color-blush: #fce4ec;
+  --color-lavender: #e9ddf5;
+  --color-cocoa: #684b47;
+  --color-cocoa-dark: #4a3431;
+  --color-cocoa-soft: #7d605b;
+  --color-whatsapp: #25d366;
+
+  --font-display: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 10px 30px -12px rgb(104 75 71 / 0.25);
+  --shadow-lift: 0 18px 40px -14px rgb(104 75 71 / 0.35);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-cocoa);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-cocoa);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Scalloped "frosting" edge: paints the section color as semicircles into the next section. */
+.scallop {
+  height: 18px;
+  background-image: radial-gradient(circle at 14px 0, currentColor 13px, transparent 13.5px);
+  background-size: 28px 18px;
+  background-repeat: repeat-x;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
