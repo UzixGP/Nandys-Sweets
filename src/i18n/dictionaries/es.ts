@@ -19,16 +19,16 @@ export const es = {
     switchLanguageAria: "Cambiar a inglés",
   },
   hero: {
-    eyebrow: "Hecho en casa, con amor",
+    eyebrow: "Hechos en casa",
     title: "Momentos dulces, hechos con amor.",
     subtitle:
       "Desde hermosos pasteles personalizados hasta deliciosos postres caseros, Nandy's Sweets & Cakes le pone un toque extra de dulzura a cada celebración.",
-    primaryCta: "Explorar Dulces",
+    primaryCta: "Explorar Postres",
     secondaryCta: "Pastel Personalizado",
   },
   featured: {
     eyebrow: "Favoritos de la casa",
-    title: "Nuestros Dulces",
+    title: "Nuestros Postres",
     subtitle: "Postres hechos a mano, uno a uno, para tus momentos especiales.",
     viewAll: "Ver todo el menú",
   },

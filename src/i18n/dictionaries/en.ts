@@ -21,16 +21,16 @@ export const en: Dictionary = {
     switchLanguageAria: "Switch to Spanish",
   },
   hero: {
-    eyebrow: "Homemade, with love",
+    eyebrow: "Homemade",
     title: "Sweet Moments, Made with Love.",
     subtitle:
       "From beautiful custom cakes to delicious homemade desserts, Nandy's Sweets & Cakes brings a little extra sweetness to every celebration.",
-    primaryCta: "Explore Our Sweets",
+    primaryCta: "Explore Our Desserts",
     secondaryCta: "Request a Custom Cake",
   },
   featured: {
     eyebrow: "House favorites",
-    title: "Our Sweets",
+    title: "Our Desserts",
     subtitle: "Handmade desserts, one by one, for your special moments.",
     viewAll: "See the full menu",
   },
