@@ -6,11 +6,17 @@ import type { Locale } from "@/i18n/config";
 import { fill } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { whatsappLink } from "@/lib/contact";
-import { albums, type Album, type GalleryImage } from "@/lib/gallery";
+import { albums, tagLabel, type Album, type GalleryImage } from "@/lib/gallery";
 import { ArrowIcon, CloseIcon, WhatsAppIcon } from "./icons";
 
 type Labels = Dictionary["gallery"];
 type Photo = { image: GalleryImage; album: Album; index: number };
+
+/** "Pastel de Tres Leches – Cumpleaños · Para ella" */
+const describe = (album: Album, image: GalleryImage, lang: Locale) => {
+  const tags = tagLabel(image, lang);
+  return tags ? `${album.name[lang]} – ${tags}` : album.name[lang];
+};
 
 // The selected album lives in the URL hash (/gallery#TresLeches) so product cards can link straight to it.
 const subscribe = (onChange: () => void) => {
@@ -68,7 +74,7 @@ export function GalleryView({ lang, labels }: { lang: Locale; labels: Labels }) 
                       type="button"
                       onClick={() => setOpen(position)}
                       aria-label={fill(labels.openPhoto, {
-                        album: album.name[lang],
+                        album: describe(album, image, lang),
                         n: String(index + 1),
                       })}
                       className="group relative block aspect-[3/4] w-full overflow-hidden rounded-3xl bg-blush shadow-soft ring-4 ring-cream transition duration-300 hover:-translate-y-1 hover:shadow-lift"
@@ -82,6 +88,11 @@ export function GalleryView({ lang, labels }: { lang: Locale; labels: Labels }) 
                         sizes="(min-width: 1024px) 18rem, (min-width: 768px) 30vw, 46vw"
                         className="object-cover transition duration-500 group-hover:scale-105"
                       />
+                      {image.tags.length > 0 && (
+                        <span className="absolute bottom-2 left-2 rounded-full bg-cream/90 px-3 py-1 font-display text-xs font-semibold text-cocoa shadow-soft sm:text-sm">
+                          {tagLabel(image, lang)}
+                        </span>
+                      )}
                     </button>
                   </li>
                 );
@@ -155,7 +166,7 @@ function Lightbox({
 
   // The lightbox only opens after a click, so window is always available here.
   const message = fill(labels.wantThisMessage, {
-    album: album.name[lang],
+    album: describe(album, image, lang),
     url: `${window.location.origin}${image.src}`,
   });
 
@@ -179,7 +190,7 @@ function Lightbox({
           <Image
             key={image.src}
             src={image.src}
-            alt={`${album.name[lang]} ${index + 1}`}
+            alt={describe(album, image, lang)}
             fill
             placeholder="blur"
             blurDataURL={image.blurDataURL}
@@ -190,7 +201,7 @@ function Lightbox({
 
         <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-3 text-cream">
           <p className="font-display font-semibold">
-            {album.name[lang]} · {index + 1} / {photos.length}
+            {describe(album, image, lang)} · {index + 1} / {photos.length}
           </p>
           <a
             href={whatsappLink(message)}

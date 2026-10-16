@@ -32,11 +32,12 @@ npm run lint
 
 Every build runs `npm run gallery`, which scans the folders and writes `src/content/gallery.generated.json`:
 - Each folder becomes an album on the **Galería** page, with its own filter chip.
-- The **first** photo of the folder (alphabetical; name it `01-...` to choose) is the product card's cover.
+- The **first** photo of the folder (alphabetical) is the product card's cover.
+- File-name pattern: `NN-Tags_Dessert.png`, e.g. `01-BD_Fem_TresLeches.png`. `NN` sets the order, and tag codes (`BD` = Cumpleaños/Birthday, `Fem` = Para ella, `Man` = Para él) appear as labels on the photo. Add new codes in `src/content/photoTags.ts`.
 - JPG, PNG, WebP and AVIF work. iPhone **HEIC** photos are skipped with a warning, so export them as JPG.
 - A folder linked from a product (`album: "TresLeches"` in `products.ts`) takes that product's name. Other folders use their folder name ("TresLeches" → "Tres Leches").
 
-If the logo changes, replace `public/brand/NandySC_logo.png` and run `node scripts/brand-assets.mjs`. That regenerates the transparent logo, the favicon and the social-share image (`public/og.png`).
+If the logo changes, replace `public/brand/NandySC_transparent_logo.png` and run `node scripts/brand-assets.mjs`. That regenerates the transparent logo, the favicon and the social-share image (`public/og.png`).
 
 Notes:
 - Products with `price: null` show "Precio a cotizar / Price on request". Only add prices Nandy has confirmed.

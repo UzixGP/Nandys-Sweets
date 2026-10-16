@@ -34,6 +34,7 @@ for (const folder of folders) {
     const blur = await sharp(filePath).rotate().resize(12).webp({ quality: 40 }).toBuffer();
 
     images.push({
+      name: path.basename(file, path.extname(file)),
       src: ["", "images", "products", folder, file].map(encodeURIComponent).join("/"),
       width: rotated ? meta.height : meta.width,
       height: rotated ? meta.width : meta.height,

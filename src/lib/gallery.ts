@@ -1,8 +1,21 @@
 import manifest from "@/content/gallery.generated.json";
+import { photoTags } from "@/content/photoTags";
 import { products, type Product } from "@/content/products";
 import type { Localized } from "@/content/types";
 
-export type GalleryImage = (typeof manifest.albums)[number]["images"][number];
+export type GalleryImage = (typeof manifest.albums)[number]["images"][number] & { tags: Localized[] };
+
+/** "01-BD_Fem_TresLeches" -> [Cumpleaños, Para ella]. See src/content/photoTags.ts. */
+const tagsFromName = (name: string) =>
+  name
+    .replace(/^\d+[-_ ]*/, "")
+    .split(/[-_ ]+/)
+    .filter((code) => code in photoTags)
+    .map((code) => photoTags[code]);
+
+/** Joins a photo's tags for display, e.g. "Cumpleaños · Para ella". */
+export const tagLabel = (image: GalleryImage, lang: keyof Localized) =>
+  image.tags.map((t) => t[lang]).join(" · ");
 
 export type Album = {
   id: string;
@@ -31,7 +44,7 @@ export const albums: Album[] = [...manifest.albums]
     return {
       id: album.folder,
       name: product?.name ?? { es: fallback, en: fallback },
-      images: album.images,
+      images: album.images.map((image) => ({ ...image, tags: tagsFromName(image.name) })),
     };
   });
 
