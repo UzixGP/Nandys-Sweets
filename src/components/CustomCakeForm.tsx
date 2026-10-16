@@ -95,7 +95,7 @@ function buildMessage(values: Fields, t: Labels, lang: Locale) {
     [t.servings, values.servings],
     [t.flavor, values.flavor],
     [t.size, values.size],
-    [t.budget, values.budget],
+    [t.budget, values.budget.trim() && `$${values.budget.trim()}`],
     [t.details, values.details],
   ];
   const lines = rows
@@ -290,12 +290,23 @@ export function CustomCakeForm({ labels: t, lang }: { labels: Labels; lang: Loca
       </Field>
 
       <Field id="budget" label={t.budget} optional={t.optional}>
-        <input
-          {...inputProps("budget")}
-          placeholder={t.budgetPlaceholder}
-          value={values.budget}
-          onChange={(e) => update("budget", e.target.value)}
-        />
+        {/* The "$" is built in (and added to the message), so customers only type the number. */}
+        <div className="relative">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-4 flex items-center font-semibold text-cocoa-soft"
+          >
+            $
+          </span>
+          <input
+            {...inputProps("budget")}
+            inputMode="decimal"
+            placeholder={t.budgetPlaceholder}
+            value={values.budget}
+            onChange={(e) => update("budget", e.target.value.replace(/\$/g, ""))}
+            className={`${inputProps("budget").className} pl-8!`}
+          />
+        </div>
       </Field>
 
       <Field id="details" label={t.details} optional={t.optional} wide>

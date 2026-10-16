@@ -143,7 +143,7 @@ export const es = {
     size: "Tamaño o altura aproximada",
     sizePlaceholder: "Ej. 2 pisos, 8 pulgadas…",
     budget: "Presupuesto aproximado",
-    budgetPlaceholder: "Ej. $80",
+    budgetPlaceholder: "80",
     details: "Diseño e indicaciones especiales",
     detailsPlaceholder: "Colores, tema, relleno, mensaje en el pastel, alergias…",
     optional: "(opcional)",

@@ -144,7 +144,7 @@ export const en: Dictionary = {
     size: "Approximate size or height",
     sizePlaceholder: "E.g. 2 tiers, 8 inches…",
     budget: "Approximate budget",
-    budgetPlaceholder: "E.g. $80",
+    budgetPlaceholder: "80",
     details: "Design and special instructions",
     detailsPlaceholder: "Colors, theme, filling, message on the cake, allergies…",
     optional: "(optional)",
