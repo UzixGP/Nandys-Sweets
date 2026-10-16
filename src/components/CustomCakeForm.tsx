@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 import { fill, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { deliveryTerms, mailtoLink, whatsappLink } from "@/lib/contact";
-import { earliestOrderDate, leadTimeTerms } from "@/lib/leadTime";
+import { earliestOrderDate, leadTimeTerms, timeSlots } from "@/lib/leadTime";
 import { MailIcon, WhatsAppIcon } from "./icons";
 
 type Labels = Dictionary["form"];
@@ -40,7 +40,9 @@ const empty: Fields = {
   details: "",
 };
 
-/** "15:30" -> "3:30 PM" for the message, which is read on a phone. */
+const TIME_SLOTS = timeSlots();
+
+/** "15:30" -> "3:30 PM" for the time options and the message. */
 const to12h = (time: string) => {
   const [h, m] = time.split(":").map(Number);
   return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`;
@@ -204,13 +206,21 @@ export function CustomCakeForm({ labels: t, lang }: { labels: Labels; lang: Loca
       </Field>
 
       <Field id="time" label={t.time} error={errors.time}>
-        <input
+        {/* A list of 30-minute slots instead of a native time picker, which makes people scroll every minute. */}
+        <select
           {...inputProps("time", errors.time)}
-          type="time"
-          step={900}
           value={values.time}
           onChange={(e) => update("time", e.target.value)}
-        />
+        >
+          <option value="" disabled>
+            {t.timePlaceholder}
+          </option>
+          {TIME_SLOTS.map((slot) => (
+            <option key={slot} value={slot}>
+              {to12h(slot)}
+            </option>
+          ))}
+        </select>
       </Field>
 
       <p className="-mt-2 rounded-2xl bg-lavender px-4 py-3 text-sm sm:col-span-2">

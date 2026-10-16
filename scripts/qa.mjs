@@ -88,11 +88,12 @@ const shot = async (name) => {
   });
   await writeFile(path.join(OUT, `${name}.png`), Buffer.from(result.data, "base64"));
 };
-// Sets a React-controlled input's value the way a user would.
+// Sets a React-controlled input/select's value the way a user would (selects only react to "change").
 const setValue = (id, value) =>
   js(`(() => { const el = document.getElementById(${JSON.stringify(id)});
     Object.getOwnPropertyDescriptor(Object.getPrototypeOf(el), 'value').set.call(el, ${JSON.stringify(value)});
-    el.dispatchEvent(new Event('input', { bubbles: true })); return true })()`);
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true })); return true })()`);
 const errorIds = () =>
   js("[...document.querySelectorAll('[id$=-error]')].map(e => e.id.replace('cake-','').replace('-error',''))");
 
@@ -117,6 +118,12 @@ const pickupErrors = await errorIds();
 check(
   ["name", "date", "time", "servings", "flavor"].every((f) => pickupErrors.includes(f)),
   "empty form shows required errors", pickupErrors.join(", "),
+);
+const slots = await js("[...document.querySelectorAll('#cake-time option')].map(o => o.value).filter(Boolean)");
+check(
+  slots.length > 1 && slots.every((s) => /^\d{2}:(00|30)$/.test(s)),
+  "time options are 30-minute slots",
+  `${slots.length} slots, ${slots[0]}–${slots.at(-1)}`,
 );
 const minDate = await js("document.getElementById('cake-date').min");
 check(/^\d{4}-\d{2}-\d{2}$/.test(minDate), "date picker has an earliest date", minDate);

@@ -127,6 +127,7 @@ export const en: Dictionary = {
     phone: "Phone",
     date: "Pickup or delivery date",
     time: "Time",
+    timePlaceholder: "Choose a time",
     leadTimeNote:
       "We need at least {hours} hours' notice ({bigHours} hours for large cakes). Orders confirmed after {cutoff} count from the next day.",
     fulfillment: "How would you like to get your order?",

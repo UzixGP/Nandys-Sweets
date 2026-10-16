@@ -126,6 +126,7 @@ export const es = {
     phone: "Teléfono",
     date: "Fecha de recogida o entrega",
     time: "Hora",
+    timePlaceholder: "Elige una hora",
     leadTimeNote:
       "Necesitamos al menos {hours} horas de anticipación ({bigHours} horas para pasteles grandes). Los pedidos confirmados después de las {cutoff} cuentan a partir del día siguiente.",
     fulfillment: "¿Cómo quieres recibir tu pedido?",

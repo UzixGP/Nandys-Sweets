@@ -14,6 +14,7 @@ prices, policies, reviews or history; if a value isn't confirmed, ask.
 | Phone/WhatsApp, email, Instagram | `src/content/site.ts` (`whatsappNumber` digits only + `phoneDisplay`) |
 | Pickup area, delivery fee & radius | `site.ts` → `pickupArea`, `deliveryFee`, `deliveryRadiusMiles` |
 | Order notice & cutoff | `site.ts` → `minNoticeHours`, `bigCakeNoticeHours`, `orderCutoffHour`, `timeZone` |
+| Pickup/delivery time options (form dropdown) | `site.ts` → `timeSlots: { first, last, stepMinutes }` (currently 8 AM–8 PM, every 30 min; hours not yet confirmed by Nandy) |
 | Show/hide deposit + payment methods | `site.ts` → `showPolicies`; wording in `orderInfo.paymentBody` |
 | Starting price | `src/content/products.ts` → `startingPrice: "$35"` (renders "Desde $35"); `null` = "Precio a cotizar" |
 | New dessert | add to `products.ts` (`slug`, `category`, `name`/`description` {es,en}, `album`, `bg`, `inquiry`) |

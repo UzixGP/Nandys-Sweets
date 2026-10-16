@@ -26,6 +26,9 @@ export const site = {
   bigCakeNoticeHours: 48,
   orderCutoffHour: 18, // 6 PM
 
+  // Pickup/delivery time options in the form (24h "HH:MM"). TODO(Nandy): confirm the hours.
+  timeSlots: { first: "08:00", last: "20:00", stepMinutes: 30 },
+
   // Shows the 50% deposit + Zelle/PayPal/cash policy (confirmed by Nandy, 2026-10-16).
   showPolicies: true,
 };

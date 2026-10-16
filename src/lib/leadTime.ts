@@ -22,6 +22,19 @@ export function earliestOrderDate(now = new Date()) {
     .slice(0, 10);
 }
 
+/** Pickup/delivery time options as 24h "HH:MM" strings, e.g. ["08:00", "08:30", …, "20:00"]. */
+export function timeSlots({ first, last, stepMinutes } = site.timeSlots) {
+  const toMinutes = (time: string) => {
+    const [h, m] = time.split(":").map(Number);
+    return h * 60 + m;
+  };
+  const slots: string[] = [];
+  for (let t = toMinutes(first); t <= toMinutes(last); t += stepMinutes) {
+    slots.push(`${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`);
+  }
+  return slots;
+}
+
 /** Values for the {hours}, {bigHours} and {cutoff} placeholders in order-notice text. */
 export const leadTimeTerms = {
   hours: String(site.minNoticeHours),
