@@ -8,15 +8,15 @@ export type Product = {
   description: Localized;
   /** Photo folder under public/images/products/. Its first photo is the card cover and all of them appear in the gallery. */
   album?: string;
-  /** Only prices Nandy has confirmed, e.g. "$35". Leave null to show "price on request". */
-  price: string | null;
+  /** Starting price Nandy has confirmed, e.g. "$35" (shown as "Desde $35"). Leave null for "Precio a cotizar". */
+  startingPrice: string | null;
   featured?: boolean;
   bg: Pastel;
   /** "whatsapp" asks about the product in chat; "custom" sends the visitor to the custom-cake form. */
   inquiry: "whatsapp" | "custom";
 };
 
-// TODO(Nandy): confirm descriptions, add any confirmed prices, and add more desserts as albums grow.
+// TODO(Nandy): confirm descriptions and starting prices, and add more desserts as albums grow.
 export const products: Product[] = [
   {
     slug: "tres-leches",
@@ -27,7 +27,7 @@ export const products: Product[] = [
       en: "Fluffy sponge cake soaked in three milks, with the filling and decoration of your choice.",
     },
     album: "TresLeches",
-    price: null,
+    startingPrice: null,
     featured: true,
     bg: "pink",
     inquiry: "custom",
@@ -41,7 +41,7 @@ export const products: Product[] = [
       en: "Chocolate cake with a smooth layer of flan.",
     },
     album: "Chocoflan",
-    price: null,
+    startingPrice: null,
     featured: true,
     bg: "yellow",
     inquiry: "whatsapp",
@@ -55,7 +55,7 @@ export const products: Product[] = [
       en: "Colorful gelatin cubes set in a creamy gelatin.",
     },
     album: "Mosaico",
-    price: null,
+    startingPrice: null,
     featured: true,
     bg: "blue",
     inquiry: "whatsapp",

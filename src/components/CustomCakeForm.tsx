@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 import { fill, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { deliveryTerms, mailtoLink, whatsappLink } from "@/lib/contact";
+import { earliestOrderDate, leadTimeTerms } from "@/lib/leadTime";
 import { MailIcon, WhatsAppIcon } from "./icons";
 
 type Labels = Dictionary["form"];
@@ -45,22 +46,18 @@ const to12h = (time: string) => {
   return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`;
 };
 
-/** Local date as YYYY-MM-DD, used to block past pickup dates. */
-const today = () => {
-  const d = new Date();
-  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-  return d.toISOString().slice(0, 10);
-};
-
-// The date picker's min is only known in the browser, so it's skipped during prerendering.
+// The earliest date depends on the current time, so it's only computed in the browser, never at prerender.
 const noSubscribe = () => () => {};
-const useToday = () => useSyncExternalStore(noSubscribe, today, () => undefined);
+const useEarliestDate = () =>
+  useSyncExternalStore(noSubscribe, () => earliestOrderDate(), () => undefined);
 
-function validate(values: Fields, t: Labels) {
+function validate(values: Fields, t: Labels, lang: Locale) {
   const errors: Partial<Record<FieldName, string>> = {};
+  const earliest = earliestOrderDate();
   if (!values.name.trim()) errors.name = t.errors.required;
   if (!values.date) errors.date = t.errors.required;
-  else if (values.date < today()) errors.date = t.errors.dateFuture;
+  else if (values.date < earliest)
+    errors.date = fill(t.errors.dateTooSoon, { date: longDate(earliest, lang) });
   if (!values.time) errors.time = t.errors.required;
   if (values.fulfillment === "delivery" && !values.address.trim()) errors.address = t.errors.required;
   const servings = Number(values.servings);
@@ -108,7 +105,7 @@ export function CustomCakeForm({ labels: t, lang }: { labels: Labels; lang: Loca
   const [values, setValues] = useState<Fields>(empty);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [sent, setSent] = useState(false);
-  const minDate = useToday();
+  const minDate = useEarliestDate();
 
   const update = <K extends FieldName>(name: K, value: Fields[K]) => {
     setValues((v) => ({ ...v, [name]: value }));
@@ -116,7 +113,7 @@ export function CustomCakeForm({ labels: t, lang }: { labels: Labels; lang: Loca
   };
 
   const submit = (channel: "whatsapp" | "email") => {
-    const found = validate(values, t);
+    const found = validate(values, t, lang);
     setErrors(found);
     const firstInvalid = Object.keys(found)[0];
     if (firstInvalid) {
@@ -215,6 +212,10 @@ export function CustomCakeForm({ labels: t, lang }: { labels: Labels; lang: Loca
           onChange={(e) => update("time", e.target.value)}
         />
       </Field>
+
+      <p className="-mt-2 rounded-2xl bg-lavender px-4 py-3 text-sm sm:col-span-2">
+        ⏰ {fill(t.leadTimeNote, leadTimeTerms)}
+      </p>
 
       <fieldset className="sm:col-span-2">
         <legend className="mb-1.5 font-display font-semibold">{t.fulfillment}</legend>

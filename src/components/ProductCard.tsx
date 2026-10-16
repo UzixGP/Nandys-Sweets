@@ -73,7 +73,9 @@ export function ProductCard({ product, lang, labels }: Props) {
       <p className="mt-2 max-w-xs text-cocoa-soft">{product.description[lang]}</p>
       <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
         <span className="rounded-full bg-cream px-3 py-1 font-display text-sm font-semibold ring-1 ring-cocoa/10">
-          {product.price ?? labels.priceOnRequest}
+          {product.startingPrice
+            ? fill(labels.priceFrom, { price: product.startingPrice })
+            : labels.priceOnRequest}
         </span>
         {album && album.images.length > 1 && (
           <Link

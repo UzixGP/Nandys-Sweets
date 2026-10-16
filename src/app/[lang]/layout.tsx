@@ -80,6 +80,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       postalCode: "07017",
       addressCountry: "US",
     },
+    ...(site.showPolicies && { paymentAccepted: "Zelle, PayPal, Cash" }),
     ...(site.email && { email: site.email }),
     ...(site.whatsappNumber && { telephone: `+${site.whatsappNumber}` }),
     ...(site.instagramUrl && { sameAs: [site.instagramUrl] }),

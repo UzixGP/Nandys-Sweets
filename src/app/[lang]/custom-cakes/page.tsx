@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CustomCakeForm } from "@/components/CustomCakeForm";
+import { OrderInfo } from "@/components/OrderInfo";
 import { PageHero } from "@/components/PageHero";
-import { PickupDeliveryInfo } from "@/components/PickupDeliveryInfo";
 import { Scallop, SectionHeading } from "@/components/ui";
-import { site } from "@/content/site";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 
@@ -56,14 +55,7 @@ export default async function CustomCakesPage({ params }: PageProps<"/[lang]/cus
         <p className="mx-auto mt-10 max-w-2xl rounded-2xl bg-yellow px-5 py-4 text-center font-semibold">
           {page.pricingNote}
         </p>
-        <PickupDeliveryInfo labels={dict.pickupDelivery} className="mt-12" />
-        {site.showPolicies && (
-          <div className="mx-auto mt-6 max-w-2xl rounded-2xl bg-blue px-5 py-4 text-center">
-            <h3 className="font-display text-lg font-bold">{dict.policies.title}</h3>
-            <p className="mt-1">{dict.policies.deposit}</p>
-            <p>{dict.policies.methods}</p>
-          </div>
-        )}
+        <OrderInfo labels={dict.orderInfo} className="mt-14" />
       </section>
       <Scallop from="text-cream" to="bg-blush" />
 

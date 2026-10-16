@@ -60,6 +60,7 @@ export const es = {
     quote: "Cotizar",
     quoteAria: "Cotizar {name}",
     priceOnRequest: "Precio a cotizar",
+    priceFrom: "Desde {price}",
     morePhotos: "Ver {count} fotos",
     whatsappMessage:
       "¡Hola Nandy's Sweets & Cakes! Me interesa: {name}. ¿Me pueden dar información sobre disponibilidad y precio?",
@@ -125,6 +126,8 @@ export const es = {
     phone: "Teléfono",
     date: "Fecha de recogida o entrega",
     time: "Hora",
+    leadTimeNote:
+      "Necesitamos al menos {hours} horas de anticipación ({bigHours} horas para pasteles grandes). Los pedidos confirmados después de las {cutoff} cuentan a partir del día siguiente.",
     fulfillment: "¿Cómo quieres recibir tu pedido?",
     fulfillmentShort: "Recogida o entrega",
     pickup: "Recoger",
@@ -153,7 +156,7 @@ export const es = {
     submitEmail: "Enviar por correo",
     errors: {
       required: "Este campo es obligatorio.",
-      dateFuture: "Elige una fecha a partir de hoy.",
+      dateTooSoon: "La fecha más próxima disponible es el {date}.",
       servings: "Ingresa un número de porciones válido.",
       summary: "Revisa los campos marcados para continuar.",
     },
@@ -168,19 +171,19 @@ export const es = {
       emailSubject: "Solicitud de pastel personalizado",
     },
   },
-  pickupDelivery: {
-    title: "Recogida y entrega",
+  orderInfo: {
+    title: "Antes de ordenar",
+    leadTitle: "Anticipación",
+    leadBody:
+      "Pide con al menos {hours} horas de anticipación ({bigHours} horas para pasteles grandes). Los pedidos confirmados después de las {cutoff} cuentan a partir del día siguiente.",
+    paymentTitle: "Pagos",
+    paymentBody:
+      "Se requiere un anticipo del 50% para confirmar tu pedido; el otro 50% se paga al recoger o al recibir tu entrega. Aceptamos Zelle, PayPal y efectivo.",
     pickupTitle: "Recogida",
     pickupBody: "La mayoría de nuestros pedidos son para recoger en {area}.",
     deliveryTitle: "Entrega a domicilio",
     deliveryBody:
       "También entregamos dentro de un radio de {radius} millas por {fee} adicionales. Primero confirmamos tu dirección.",
-  },
-  policies: {
-    title: "Pagos y anticipo",
-    deposit:
-      "Se requiere un anticipo del 50% para confirmar tu pedido; el 50% restante se paga al recoger.",
-    methods: "Aceptamos Zelle, PayPal y efectivo.",
   },
   aboutPage: {
     eyebrow: "Nosotros",

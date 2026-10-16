@@ -61,6 +61,7 @@ export const en: Dictionary = {
     quote: "Get a quote",
     quoteAria: "Get a quote for {name}",
     priceOnRequest: "Price on request",
+    priceFrom: "From {price}",
     morePhotos: "See {count} photos",
     whatsappMessage:
       "Hi Nandy's Sweets & Cakes! I'm interested in: {name}. Could you tell me about availability and price?",
@@ -126,6 +127,8 @@ export const en: Dictionary = {
     phone: "Phone",
     date: "Pickup or delivery date",
     time: "Time",
+    leadTimeNote:
+      "We need at least {hours} hours' notice ({bigHours} hours for large cakes). Orders confirmed after {cutoff} count from the next day.",
     fulfillment: "How would you like to get your order?",
     fulfillmentShort: "Pickup or delivery",
     pickup: "Pickup",
@@ -154,7 +157,7 @@ export const en: Dictionary = {
     submitEmail: "Send by email",
     errors: {
       required: "This field is required.",
-      dateFuture: "Choose a date from today onward.",
+      dateTooSoon: "The earliest available date is {date}.",
       servings: "Enter a valid number of servings.",
       summary: "Please check the highlighted fields to continue.",
     },
@@ -169,19 +172,19 @@ export const en: Dictionary = {
       emailSubject: "Custom cake request",
     },
   },
-  pickupDelivery: {
-    title: "Pickup & delivery",
+  orderInfo: {
+    title: "Before you order",
+    leadTitle: "Order ahead",
+    leadBody:
+      "Please order at least {hours} hours ahead ({bigHours} hours for large cakes). Orders confirmed after {cutoff} count from the next day.",
+    paymentTitle: "Payments",
+    paymentBody:
+      "A 50% deposit confirms your order; the other 50% is due at pickup or delivery. We accept Zelle, PayPal and cash.",
     pickupTitle: "Pickup",
     pickupBody: "Most of our orders are picked up in {area}.",
     deliveryTitle: "Delivery",
     deliveryBody:
       "We also deliver within a {radius}-mile radius for an extra {fee}. We'll confirm your address first.",
-  },
-  policies: {
-    title: "Payments & deposit",
-    deposit:
-      "A 50% deposit is required to confirm your order; the remaining 50% is due at pickup.",
-    methods: "We accept Zelle, PayPal and cash.",
   },
   aboutPage: {
     eyebrow: "About",

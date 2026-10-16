@@ -19,6 +19,13 @@ export const site = {
   deliveryRadiusMiles: 5,
   deliveryFee: "$10",
 
-  // Shows the 50% deposit + Zelle/PayPal/cash policy. Turn on only after Nandy confirms it's current.
-  showPolicies: false,
+  // Order notice: at least 24h (48h recommended for big cakes). Orders confirmed after the cutoff
+  // count from the next day. Times are East Orange (New York) time.
+  timeZone: "America/New_York",
+  minNoticeHours: 24,
+  bigCakeNoticeHours: 48,
+  orderCutoffHour: 18, // 6 PM
+
+  // Shows the 50% deposit + Zelle/PayPal/cash policy (confirmed by Nandy, 2026-10-16).
+  showPolicies: true,
 };
