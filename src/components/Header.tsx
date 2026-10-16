@@ -69,8 +69,9 @@ export function Header({ lang, links, labels, whatsappHref, emailHref, instagram
             <span className="hidden sm:inline">{labels.openMenu}</span>
           </button>
 
-          <Link href={`/${lang}`} aria-label="Nandy's Sweets" className="text-xl sm:text-2xl">
-            <Logo />
+          {/* On desktop the badge hangs a little below the bar, like a seal on a bakery box. */}
+          <Link href={`/${lang}`} className="transition hover:scale-105 md:translate-y-4">
+            <Logo priority className="w-16 sm:w-[4.5rem] md:w-24" />
           </Link>
 
           <div className="flex items-center gap-2 justify-self-end">
@@ -111,7 +112,7 @@ export function Header({ lang, links, labels, whatsappHref, emailHref, instagram
         }`}
       >
         <div className="flex items-center justify-between border-b border-cocoa/10 px-6 py-5">
-          <Logo className="text-xl" />
+          <Logo className="w-16" />
           <button
             ref={closeRef}
             type="button"

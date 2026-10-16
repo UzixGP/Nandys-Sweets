@@ -7,6 +7,7 @@ export const es = {
   nav: {
     home: "Inicio",
     menu: "Menú",
+    gallery: "Galería",
     customCakes: "Pasteles Personalizados",
     about: "Nosotros",
     contact: "Contacto",
@@ -31,8 +32,27 @@ export const es = {
     subtitle: "Postres hechos a mano, uno a uno, para tus momentos especiales.",
     viewAll: "Ver todo el menú",
   },
-  categories: {
-    title: "Explora por categoría",
+  galleryTeaser: {
+    eyebrow: "Nuestros trabajos",
+    title: "Cada pastel es único",
+    subtitle:
+      "Un vistazo a pedidos que hemos preparado: cada uno con su propia decoración y relleno.",
+    cta: "Ver la galería",
+  },
+  gallery: {
+    eyebrow: "Galería",
+    title: "Nuestros Trabajos",
+    subtitle:
+      "Cada pedido es único: diferentes decoraciones, rellenos y celebraciones. Toca una foto para verla en grande y pedir algo parecido.",
+    filterLabel: "Filtrar por postre",
+    all: "Todos",
+    openPhoto: "Ver foto {n} de {album}",
+    previous: "Foto anterior",
+    next: "Foto siguiente",
+    close: "Cerrar",
+    wantThis: "Quiero uno así",
+    wantThisMessage:
+      "¡Hola Nandy's Sweets! Vi este postre en su galería ({album}) y me gustaría algo parecido: {url}",
   },
   product: {
     ask: "Preguntar",
@@ -40,6 +60,7 @@ export const es = {
     quote: "Cotizar",
     quoteAria: "Cotizar {name}",
     priceOnRequest: "Precio a cotizar",
+    morePhotos: "Ver {count} fotos",
     whatsappMessage:
       "¡Hola Nandy's Sweets! Me interesa: {name}. ¿Me pueden dar información sobre disponibilidad y precio?",
   },

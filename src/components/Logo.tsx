@@ -1,13 +1,15 @@
-// TODO: swap the text wordmark for the official logo (public/brand/logo.png) with next/image once it's added.
-export function Logo({ className = "" }: { className?: string }) {
+import Image from "next/image";
+import logo from "../../public/brand/logo.png";
+
+/** Round Nandy's Sweets & Cakes badge. Size it with a width class, e.g. "w-16". */
+export function Logo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
   return (
-    <span className={`inline-flex flex-col items-center leading-none ${className}`}>
-      <span className="font-display text-[1.65em] font-bold tracking-tight text-cocoa">
-        Nandy&apos;s
-      </span>
-      <span className="font-display text-[0.7em] font-semibold uppercase tracking-[0.35em] text-cocoa-soft">
-        Sweets
-      </span>
-    </span>
+    <Image
+      src={logo}
+      alt="Nandy's Sweets & Cakes"
+      priority={priority}
+      sizes="160px"
+      className={`h-auto drop-shadow-[0_2px_6px_rgb(104_75_71/0.18)] ${className}`}
+    />
   );
 }

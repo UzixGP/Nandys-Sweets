@@ -43,7 +43,7 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
             icon={<WhatsAppIcon className="size-8" />}
             title={page.whatsappTitle}
             body={page.whatsappBody}
-            action={dict.contactStrip.whatsapp}
+            action={site.phoneDisplay}
           />
           {site.email && (
             <ContactCard
@@ -63,7 +63,7 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
               icon={<InstagramIcon className="size-8" />}
               title={page.instagramTitle}
               body={page.instagramBody}
-              action={dict.contactStrip.instagram}
+              action={site.instagramHandle}
             />
           )}
         </ul>

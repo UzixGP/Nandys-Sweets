@@ -22,8 +22,21 @@ npm run lint
 | Menu categories and their order | `src/content/categories.ts` |
 | All page text (Spanish / English) | `src/i18n/dictionaries/es.ts`, `en.ts` |
 | Colors and fonts (design tokens) | `src/app/globals.css` |
-| Logo | `public/brand/` + `src/components/Logo.tsx` |
-| Product photos | `public/images/products/` |
+| Logo | `public/brand/logo.png` (made from `NandySC_logo.png` by `scripts/brand-assets.mjs`) |
+| Photos / gallery albums | `public/images/products/<Album>/` |
+
+## Adding photos (no code needed)
+
+1. Drop the photos into the dessert's folder, e.g. `public/images/products/TresLeches/`. To start a new album, create a new folder.
+2. Commit and push. Done.
+
+Every build runs `npm run gallery`, which scans the folders and writes `src/content/gallery.generated.json`:
+- Each folder becomes an album on the **Galería** page, with its own filter chip.
+- The **first** photo of the folder (alphabetical; name it `01-...` to choose) is the product card's cover.
+- JPG, PNG, WebP and AVIF work. iPhone **HEIC** photos are skipped with a warning, so export them as JPG.
+- A folder linked from a product (`album: "TresLeches"` in `products.ts`) takes that product's name. Other folders use their folder name ("TresLeches" → "Tres Leches").
+
+If the logo changes, replace `public/brand/NandySC_logo.png` and run `node scripts/brand-assets.mjs`. That regenerates the transparent logo, the favicon and the social-share image (`public/og.png`).
 
 Notes:
 - Products with `price: null` show "Precio a cotizar / Price on request". Only add prices Nandy has confirmed.

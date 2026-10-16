@@ -43,6 +43,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
       title: dict.meta.title,
       description: dict.meta.description,
       locale: lang === "es" ? "es_US" : "en_US",
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: site.name }],
     },
   };
 }
@@ -50,6 +51,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
 const navLinks = (lang: Locale, dict: Dictionary) => [
   { href: localePath(lang), label: dict.nav.home },
   { href: localePath(lang, "/menu"), label: dict.nav.menu },
+  { href: localePath(lang, "/gallery"), label: dict.nav.gallery },
   { href: localePath(lang, "/custom-cakes"), label: dict.nav.customCakes },
   { href: localePath(lang, "/about"), label: dict.nav.about },
   { href: localePath(lang, "/contact"), label: dict.nav.contact },

@@ -6,8 +6,8 @@ export type Product = {
   category: string;
   name: Localized;
   description: Localized;
-  /** Path under /public, e.g. "/images/products/chocoflan.jpg". A placeholder shows while empty. */
-  image?: string;
+  /** Photo folder under public/images/products/. Its first photo is the card cover and all of them appear in the gallery. */
+  album?: string;
   /** Only prices Nandy has confirmed, e.g. "$35". Leave null to show "price on request". */
   price: string | null;
   featured?: boolean;
@@ -16,16 +16,17 @@ export type Product = {
   inquiry: "whatsapp" | "custom";
 };
 
-// TODO(Nandy): confirm names/descriptions, add photos and any confirmed prices, and add more desserts.
+// TODO(Nandy): confirm descriptions, add any confirmed prices, and add more desserts as albums grow.
 export const products: Product[] = [
   {
-    slug: "pastel-personalizado",
-    category: "custom-cakes",
-    name: { es: "Pastel Personalizado", en: "Custom Cake" },
+    slug: "tres-leches",
+    category: "cakes",
+    name: { es: "Pastel de Tres Leches", en: "Tres Leches Cake" },
     description: {
-      es: "Diseñado a tu medida para cumpleaños, bodas, baby showers y más.",
-      en: "Designed just for you for birthdays, weddings, baby showers and more.",
+      es: "Bizcocho esponjoso bañado en tres leches, con el relleno y la decoración que tú elijas.",
+      en: "Fluffy sponge cake soaked in three milks, with the filling and decoration of your choice.",
     },
+    album: "TresLeches",
     price: null,
     featured: true,
     bg: "pink",
@@ -39,6 +40,7 @@ export const products: Product[] = [
       es: "Pastel de chocolate con una suave capa de flan.",
       en: "Chocolate cake with a smooth layer of flan.",
     },
+    album: "Chocoflan",
     price: null,
     featured: true,
     bg: "yellow",
@@ -52,6 +54,7 @@ export const products: Product[] = [
       es: "Cubitos de gelatina de colores en una gelatina cremosa.",
       en: "Colorful gelatin cubes set in a creamy gelatin.",
     },
+    album: "Mosaico",
     price: null,
     featured: true,
     bg: "blue",

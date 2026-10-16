@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/content/site";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { Logo } from "./Logo";
 import { InstagramIcon, MailIcon, WhatsAppIcon } from "./icons";
@@ -19,7 +20,7 @@ export function Footer({ dict, links, whatsappHref, emailHref, instagramUrl }: P
       <div className="bg-pink">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
           <div className="space-y-3">
-            <Logo className="text-2xl" />
+            <Logo className="w-28" />
             <p className="max-w-xs text-cocoa-soft">{dict.footer.tagline}</p>
           </div>
 
@@ -46,13 +47,13 @@ export function Footer({ dict, links, whatsappHref, emailHref, instagramUrl }: P
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:underline"
                 >
-                  <WhatsAppIcon className="size-5" /> WhatsApp
+                  <WhatsAppIcon className="size-5" /> {site.phoneDisplay}
                 </a>
               </li>
               {emailHref && (
                 <li>
                   <a href={emailHref} className="inline-flex items-center gap-2 hover:underline">
-                    <MailIcon className="size-5" /> Email
+                    <MailIcon className="size-5" /> {site.email}
                   </a>
                 </li>
               )}
@@ -64,7 +65,7 @@ export function Footer({ dict, links, whatsappHref, emailHref, instagramUrl }: P
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 hover:underline"
                   >
-                    <InstagramIcon className="size-5" /> Instagram
+                    <InstagramIcon className="size-5" /> {site.instagramHandle}
                   </a>
                 </li>
               )}

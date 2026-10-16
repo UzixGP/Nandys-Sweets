@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { locales } from "@/i18n/config";
 
-const paths = ["", "/menu", "/custom-cakes", "/about", "/contact"];
+const paths = ["", "/menu", "/gallery", "/custom-cakes", "/about", "/contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return paths.map((path) => ({

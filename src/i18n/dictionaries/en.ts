@@ -9,6 +9,7 @@ export const en: Dictionary = {
   nav: {
     home: "Home",
     menu: "Menu",
+    gallery: "Gallery",
     customCakes: "Custom Cakes",
     about: "About",
     contact: "Contact",
@@ -33,8 +34,26 @@ export const en: Dictionary = {
     subtitle: "Handmade desserts, one by one, for your special moments.",
     viewAll: "See the full menu",
   },
-  categories: {
-    title: "Browse by category",
+  galleryTeaser: {
+    eyebrow: "Our work",
+    title: "Every cake is one of a kind",
+    subtitle: "A peek at orders we've made, each with its own decoration and filling.",
+    cta: "See the gallery",
+  },
+  gallery: {
+    eyebrow: "Gallery",
+    title: "Our Previous Work",
+    subtitle:
+      "Every order is unique: different decorations, fillings and celebrations. Tap a photo to see it up close and ask for something similar.",
+    filterLabel: "Filter by dessert",
+    all: "All",
+    openPhoto: "View photo {n} of {album}",
+    previous: "Previous photo",
+    next: "Next photo",
+    close: "Close",
+    wantThis: "I want one like this",
+    wantThisMessage:
+      "Hi Nandy's Sweets! I saw this dessert in your gallery ({album}) and I'd like something similar: {url}",
   },
   product: {
     ask: "Ask",
@@ -42,6 +61,7 @@ export const en: Dictionary = {
     quote: "Get a quote",
     quoteAria: "Get a quote for {name}",
     priceOnRequest: "Price on request",
+    morePhotos: "See {count} photos",
     whatsappMessage:
       "Hi Nandy's Sweets! I'm interested in: {name}. Could you tell me about availability and price?",
   },

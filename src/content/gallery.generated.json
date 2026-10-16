@@ -1,0 +1,43 @@
+{
+  "albums": [
+    {
+      "folder": "Chocoflan",
+      "images": [
+        {
+          "src": "/images/products/Chocoflan/Nandy%E2%80%99s%20Chocoflan%20Bakery%20Poster.png",
+          "width": 1039,
+          "height": 1513,
+          "blurDataURL": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAABQBACdASoMABEAPu1iqU2ppaOiMAgBMB2JbACdMoRwAc+9CPoArsdydRoAAP7nkBlhjuInmQJtjIgSY+7RSnlXOnASPkknMFyvQhDexYrJ4lhy7jaACAJ72QoqImyJZuZ/Clz6Yziaxz8Ux1/CyVsohFR4Xk3Nxx25+EqhXYzwAA=="
+        }
+      ]
+    },
+    {
+      "folder": "Mosaico",
+      "images": [
+        {
+          "src": "/images/products/Mosaico/Pastel%20Mosaico%20de%20Gelatina%20Poster.png",
+          "width": 1039,
+          "height": 1513,
+          "blurDataURL": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADwAwCdASoMABEAPu1iqU2ppaOiMAgBMB2JagCdMoADUd2kqWRf34ggAP7nIa5LueBUiXpYebGrmhpn5Ndg8+dUbsy5mbscAf4ys+0zfRlZ9/kXUerl4R7X4jVhlLHVqm7r9Hd/CcorlWe74SYelzPAAAA="
+        }
+      ]
+    },
+    {
+      "folder": "TresLeches",
+      "images": [
+        {
+          "src": "/images/products/TresLeches/BD_Fem_TresLeches.png",
+          "width": 1086,
+          "height": 1448,
+          "blurDataURL": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoMABAAA4BaJbACdAERH9a7D0AA/vIHSCo5jmwNKjotWvlcxanYMDYJOhzM+aauakEgIOJsfFjSnbcOTbQWCYf4lcOaFIKDExtVz3l7ycz43QAA"
+        },
+        {
+          "src": "/images/products/TresLeches/BD_Man_TresLeches.png",
+          "width": 1086,
+          "height": 1448,
+          "blurDataURL": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAQAgCdASoMABAAA4BaJbACdAEKpCX+UHAAAP7v37MbuVnHqldQ+aut0fRn1HvO7Y/s5t0Xzd/mRXOCnJ9q3HmUHcATMHaqcXwfMfKdQXmLjFmLfAA="
+        }
+      ]
+    }
+  ]
+}
