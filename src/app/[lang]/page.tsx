@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowIcon, CakeIllustration, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/icons";
+import { PhotoSlideshow } from "@/components/PhotoSlideshow";
 import { ProductGrid } from "@/components/ProductGrid";
 import { Eyebrow, Scallop, SectionHeading, buttonClass } from "@/components/ui";
 import { featuredProducts } from "@/content/products";
@@ -10,7 +11,7 @@ import { pastelBg } from "@/content/types";
 import { hasLocale, localePath } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { mailtoLink, whatsappLink } from "@/lib/contact";
-import { albumFor, coverFor, mixedPhotos } from "@/lib/gallery";
+import { coverFor, mixedPhotos } from "@/lib/gallery";
 
 // Center card on top, the other two tilted behind it.
 const fanPositions = [
@@ -26,8 +27,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
 
   const collage = featuredProducts.slice(0, 3);
   const galleryPreview = mixedPhotos(8);
-  const customCake = featuredProducts.find((p) => p.inquiry === "custom");
-  const promoPhoto = customCake && albumFor(customCake)?.images.at(-1);
+  const promoPhotos = mixedPhotos(Infinity).map((p) => p.image);
 
   return (
     <>
@@ -159,21 +159,11 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
               <ArrowIcon className="size-5" />
             </Link>
           </div>
-          <div className="relative mx-auto grid size-52 place-items-center overflow-hidden rounded-full bg-pink shadow-soft ring-8 ring-cream sm:size-64">
-            {promoPhoto ? (
-              <Image
-                src={promoPhoto.src}
-                alt=""
-                fill
-                placeholder="blur"
-                blurDataURL={promoPhoto.blurDataURL}
-                sizes="16rem"
-                className="scale-[1.4] object-cover object-[50%_90%]"
-              />
-            ) : (
-              <CakeIllustration className="w-3/5" />
-            )}
-          </div>
+          {/* Display-only slideshow of every gallery photo (changes every 7s, no controls). */}
+          <PhotoSlideshow
+            photos={promoPhotos}
+            className="mx-auto aspect-[3/4] w-56 rotate-2 rounded-[2rem] bg-pink shadow-lift ring-8 ring-cream sm:w-64"
+          />
         </div>
       </section>
       <Scallop from="text-yellow" to="bg-blush" />
