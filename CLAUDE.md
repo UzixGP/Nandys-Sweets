@@ -48,6 +48,20 @@ or email. There is no checkout, no online payment, no backend and no database. D
 - Use **"Postres"**, not "Dulces" (reads as candy). Hero label is "Hechos en casa".
 - Keep English as a natural translation of the Spanish, not word-for-word.
 
+## Security (audited 2026-10-16 — keep it this way)
+- No secrets exist or are needed: no API keys, tokens, `.env`, backend, database or server actions. The
+  repo is **public** — never commit credentials, street addresses or private customer data.
+- Security headers + CSP live in `next.config.ts` (`poweredByHeader: false`). CSP is `'self'`-only; if a
+  new third-party script/font/image host is ever added (analytics, maps…), extend the CSP for it and run
+  `npm run qa` — it fails on any CSP violation.
+- User input only flows into `wa.me` / `mailto:` links via `encodeURIComponent` (`src/lib/contact.ts`) and
+  is rendered by React (auto-escaped). Don't add `dangerouslySetInnerHTML` with user data; the only one is
+  the JSON-LD in `layout.tsx`, which escapes `<`.
+- `scripts/build-gallery.mjs` strips EXIF/XMP (GPS, camera) from photos on every dev/build run, because
+  photos are served publicly as-is. Run `npm run gallery` **before committing** new photos so the
+  originals never enter git history.
+- No `images.remotePatterns`: the image optimizer only serves local files (no SSRF).
+
 ## Workflow
 - Repo-local git identity: `Edisson Guevara <316631335+UzixGP@users.noreply.github.com>`. Never touch
   the global git config (it's a work account). Remote: `https://UzixGP@github.com/UzixGP/Nandys-Sweets.git`.

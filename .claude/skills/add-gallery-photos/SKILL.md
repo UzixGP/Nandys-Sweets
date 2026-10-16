@@ -25,7 +25,9 @@ Photos are data, not code. Each folder in `public/images/products/` is one **alb
    they're the right dessert and not duplicates.
 2. Formats: JPG, PNG, WebP, AVIF. **HEIC is skipped** (the script warns) — ask the user to export as JPG.
    Very large files (>3 MB) work (Next/Vercel serve ~80 KB WebP) but bloat the repo; mention it.
-3. Run `npm run gallery` and read its summary line (`✓ Gallery: N photos in M albums`). Check warnings.
+3. Run `npm run gallery` **before committing** and read its summary line (`✓ Gallery: N photos in M albums`).
+   It also strips hidden metadata (GPS location, camera info) — lines starting with `🧹` mean a file was
+   cleaned and rewritten. The repo is public, so photos must be cleaned before they enter git history.
 4. **New folder?** It shows up automatically with a prettified folder name ("TresLeches" → "Tres Leches").
    If it's a new dessert for the menu, add a product in `src/content/products.ts` with `album: "<Folder>"`
    (see the `update-bakery-info` skill) so it gets a proper es/en name, description and card.

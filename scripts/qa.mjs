@@ -46,6 +46,22 @@ for (const lang of ["es", "en"]) {
 }
 check((await head("/og.png")).status === 200, "GET /og.png (share image)");
 
+// --- Security checks ---
+const page = await head("/es");
+check(/frame-ancestors 'none'/.test(page.headers.get("content-security-policy") ?? ""), "CSP header present");
+check(page.headers.get("x-frame-options") === "DENY", "X-Frame-Options: DENY");
+check(page.headers.get("x-content-type-options") === "nosniff", "X-Content-Type-Options: nosniff");
+check(!page.headers.has("x-powered-by"), "no X-Powered-By header");
+for (const p of ["/.env", "/.git/config", "/package.json", "/CLAUDE.md"]) {
+  check((await head(p)).status === 404, `not exposed: ${p}`);
+}
+for (const p of ["//evil.com", "/\\evil.com"]) {
+  const location = (await head(p)).headers.get("location") ?? "";
+  check(!location || new URL(location, BASE).origin === new URL(BASE).origin, `no open redirect: ${p}`, location);
+}
+const ssrf = await head("/_next/image?url=https%3A%2F%2Fevil.com%2Fx.png&w=640&q=75");
+check(ssrf.status === 400, "image optimizer rejects outside URLs", String(ssrf.status));
+
 // --- Browser checks ---
 const chrome = spawn(CHROME, [
   "--headless=new", "--disable-gpu", "--hide-scrollbars", `--remote-debugging-port=${PORT}`,
@@ -99,6 +115,15 @@ const errorIds = () =>
 
 await send("Page.enable");
 await send("Runtime.enable");
+// Record anything the Content-Security-Policy blocks, on every page we visit.
+await send("Page.addScriptToEvaluateOnNewDocument", {
+  source: `window.__csp = []; document.addEventListener('securitypolicyviolation',
+    e => window.__csp.push(e.violatedDirective + ' ' + e.blockedURI));`,
+});
+const cspViolations = [];
+const collectCsp = async (p) => {
+  for (const v of (await js("window.__csp || []")) ?? []) cspViolations.push(`${p}: ${v}`);
+};
 
 // Mobile layout: no sideways scroll on any page.
 await viewport(375, 812, true);
@@ -107,6 +132,7 @@ for (const p of ["/es", "/es/menu", "/es/gallery", "/es/custom-cakes", "/es/cont
   const [scroll, client] = await js("[document.documentElement.scrollWidth, document.documentElement.clientWidth]");
   check(scroll <= client, `no horizontal scroll at 375px: ${p}`, `${scroll} vs ${client}`);
   await shot(`mobile${p.replaceAll("/", "-")}`);
+  await collectCsp(p);
 }
 
 // Custom-cake form.
@@ -154,8 +180,14 @@ console.log("\n--- WhatsApp message ---\n" + message + "\n----------------------
 
 // Gallery lightbox.
 await viewport(1280, 900, false);
+await go("/es/gallery#%E0%A4");
+check(
+  (await js("document.querySelectorAll('section[aria-labelledby^=album-]').length")) > 0,
+  "gallery survives a malformed #hash link",
+);
 await go("/es/gallery");
 await shot("desktop-gallery");
+await collectCsp("/es/gallery");
 await js("document.querySelector('ul button').click(); new Promise(r => setTimeout(r, 1200))");
 const wantThis = await js("document.querySelector('dialog a[href*=\"wa.me\"]')?.href || ''");
 check(decodeURIComponent(wantThis).includes("/images/products/"), "lightbox 'Quiero uno así' shares the photo link");
@@ -163,6 +195,7 @@ check(decodeURIComponent(wantThis).includes("/images/products/"), "lightbox 'Qui
 // Home slideshow advances on its own.
 await go("/es");
 await shot("desktop-home");
+await collectCsp("/es");
 const currentSlide = () =>
   js(`[...document.querySelectorAll('div[aria-hidden].pointer-events-none')]
       .find(e => e.querySelector('img'))?.querySelector('img.opacity-100')?.src || ''`);
@@ -170,6 +203,8 @@ const first = await currentSlide();
 await sleep(4600);
 const second = await currentSlide();
 check(first && second && first !== second, "promo slideshow changes photo (~4s)");
+
+check(cspViolations.length === 0, "Content-Security-Policy blocks nothing the site needs", cspViolations.join(" | "));
 
 ws.close();
 chrome.kill();

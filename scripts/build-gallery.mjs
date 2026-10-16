@@ -1,6 +1,6 @@
 // Scans public/images/products/<Album>/ and writes src/content/gallery.generated.json.
 // Runs automatically before `npm run dev` and `npm run build`; adding photos needs no code changes.
-import { readdir, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -28,10 +28,27 @@ for (const folder of folders) {
     if (!IMAGE_EXT.has(ext)) continue;
 
     const filePath = path.join(ROOT, folder, file);
-    const meta = await sharp(filePath).metadata();
+    // Work from an in-memory copy: on Windows sharp would otherwise keep the file locked.
+    let input = await readFile(filePath);
+    let meta = await sharp(input).metadata();
+
+    // Privacy: phone photos can carry GPS coordinates (where the photo was taken) and camera details,
+    // and these files are served publicly as-is. Re-save without that metadata.
+    if (meta.exif || meta.xmp || meta.iptc) {
+      const image = sharp(input).rotate(); // bake in EXIF orientation before the tag is dropped
+      const encoded =
+        ext === ".png" ? image.png({ compressionLevel: 9 })
+        : ext === ".webp" ? image.webp({ quality: 95 })
+        : ext === ".avif" ? image.avif({ quality: 80 })
+        : image.jpeg({ quality: 95, mozjpeg: true });
+      input = await encoded.toBuffer();
+      await writeFile(filePath, input);
+      meta = await sharp(input).metadata();
+      console.log(`🧹 Removed hidden metadata (GPS/camera info) from ${folder}/${file}`);
+    }
     // EXIF orientations 5-8 are rotated 90°, so the displayed size is swapped.
     const rotated = (meta.orientation ?? 1) >= 5;
-    const blur = await sharp(filePath).rotate().resize(12).webp({ quality: 40 }).toBuffer();
+    const blur = await sharp(input).rotate().resize(12).webp({ quality: 40 }).toBuffer();
 
     images.push({
       name: path.basename(file, path.extname(file)),

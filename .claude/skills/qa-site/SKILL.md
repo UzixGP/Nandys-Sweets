@@ -23,6 +23,9 @@ npx kill-port 3124              # stop the server afterwards
 ```
 `scripts/qa.mjs` drives Chrome/Edge through the DevTools protocol (set `CHROME=` if not found) and checks:
 - `/` → `/es` redirect; every page returns 200 in both languages; `/og.png` exists
+- security: CSP / X-Frame-Options / nosniff headers, no `X-Powered-By`, `.env`/`.git`/`package.json` not
+  served, no open redirect (`//evil.com`), image optimizer rejects outside URLs, malformed `#hash` doesn't
+  crash the gallery, and **no CSP violations** on visited pages (fails if a new asset host isn't allowed)
 - no horizontal scroll at 375 px on the main pages
 - cake form: required errors, today rejected by the order-notice rule, delivery requires an address,
   WhatsApp message has 12h time, `$80` budget (no `$$`) and the address — it prints the full message

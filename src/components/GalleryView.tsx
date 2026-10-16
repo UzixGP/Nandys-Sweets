@@ -23,7 +23,14 @@ const subscribe = (onChange: () => void) => {
   window.addEventListener("hashchange", onChange);
   return () => window.removeEventListener("hashchange", onChange);
 };
-const readHash = () => decodeURIComponent(window.location.hash.slice(1));
+// A malformed hash (e.g. "#%E0") makes decodeURIComponent throw; treat it as "all albums".
+const readHash = () => {
+  try {
+    return decodeURIComponent(window.location.hash.slice(1));
+  } catch {
+    return "";
+  }
+};
 const selectAlbum = (id: string) => {
   history.replaceState(null, "", id ? `#${id}` : window.location.pathname);
   window.dispatchEvent(new HashChangeEvent("hashchange"));
