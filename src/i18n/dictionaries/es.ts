@@ -112,7 +112,7 @@ export const es = {
       },
       {
         title: "¡A celebrar!",
-        body: "Coordinamos contigo la fecha y hora para recoger tu pastel.",
+        body: "Coordinamos contigo la fecha y hora de recogida o entrega de tu pastel.",
       },
     ],
     pricingNote:
@@ -123,7 +123,20 @@ export const es = {
   form: {
     name: "Tu nombre",
     phone: "Teléfono",
-    date: "Fecha de recogida",
+    date: "Fecha de recogida o entrega",
+    time: "Hora",
+    fulfillment: "¿Cómo quieres recibir tu pedido?",
+    fulfillmentShort: "Recogida o entrega",
+    pickup: "Recoger",
+    pickupHint: "En {area}",
+    delivery: "Entrega a domicilio",
+    deliveryHint: "+{fee} · hasta {radius} millas",
+    address: "Dirección de entrega",
+    addressPlaceholder: "Calle, ciudad y código postal",
+    deliveryNote:
+      "Entregamos dentro de un radio de {radius} millas de East Orange por {fee} adicionales. Antes de confirmar tu pedido verificamos que tu dirección esté dentro del área.",
+    pickupMessage: "Recoger en {area}",
+    deliveryMessage: "Entrega a domicilio (+{fee}, dirección por confirmar)",
     servings: "Número de porciones",
     flavor: "Sabor preferido",
     flavorPlaceholder: "Ej. vainilla, chocolate, tres leches…",
@@ -132,7 +145,7 @@ export const es = {
     budget: "Presupuesto aproximado",
     budgetPlaceholder: "Ej. $80",
     details: "Diseño e indicaciones especiales",
-    detailsPlaceholder: "Colores, tema, mensaje en el pastel, alergias…",
+    detailsPlaceholder: "Colores, tema, relleno, mensaje en el pastel, alergias…",
     optional: "(opcional)",
     photoNote:
       "¿Tienes una foto de referencia? Adjúntala en el chat de WhatsApp después de enviar tu solicitud.",
@@ -154,6 +167,14 @@ export const es = {
       intro: "¡Hola Nandy's Sweets & Cakes! Me gustaría cotizar un pastel personalizado:",
       emailSubject: "Solicitud de pastel personalizado",
     },
+  },
+  pickupDelivery: {
+    title: "Recogida y entrega",
+    pickupTitle: "Recogida",
+    pickupBody: "La mayoría de nuestros pedidos son para recoger en {area}.",
+    deliveryTitle: "Entrega a domicilio",
+    deliveryBody:
+      "También entregamos dentro de un radio de {radius} millas por {fee} adicionales. Primero confirmamos tu dirección.",
   },
   policies: {
     title: "Pagos y anticipo",

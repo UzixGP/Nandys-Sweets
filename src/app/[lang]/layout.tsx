@@ -73,6 +73,13 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
     name: site.name,
     url: site.url,
     description: dict.meta.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "East Orange",
+      addressRegion: "NJ",
+      postalCode: "07017",
+      addressCountry: "US",
+    },
     ...(site.email && { email: site.email }),
     ...(site.whatsappNumber && { telephone: `+${site.whatsappNumber}` }),
     ...(site.instagramUrl && { sameAs: [site.instagramUrl] }),

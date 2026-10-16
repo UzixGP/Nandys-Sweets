@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CustomCakeForm } from "@/components/CustomCakeForm";
 import { PageHero } from "@/components/PageHero";
+import { PickupDeliveryInfo } from "@/components/PickupDeliveryInfo";
 import { Scallop, SectionHeading } from "@/components/ui";
 import { site } from "@/content/site";
 import { hasLocale } from "@/i18n/config";
@@ -55,6 +56,7 @@ export default async function CustomCakesPage({ params }: PageProps<"/[lang]/cus
         <p className="mx-auto mt-10 max-w-2xl rounded-2xl bg-yellow px-5 py-4 text-center font-semibold">
           {page.pricingNote}
         </p>
+        <PickupDeliveryInfo labels={dict.pickupDelivery} className="mt-12" />
         {site.showPolicies && (
           <div className="mx-auto mt-6 max-w-2xl rounded-2xl bg-blue px-5 py-4 text-center">
             <h3 className="font-display text-lg font-bold">{dict.policies.title}</h3>
@@ -69,7 +71,7 @@ export default async function CustomCakesPage({ params }: PageProps<"/[lang]/cus
       <section id="form" className="bg-blush px-4 py-16 sm:px-6 md:py-20">
         <SectionHeading title={page.formTitle} subtitle={page.formSubtitle} />
         <div className="mx-auto mt-10 max-w-3xl">
-          <CustomCakeForm labels={dict.form} />
+          <CustomCakeForm labels={dict.form} lang={lang} />
         </div>
       </section>
       <Scallop from="text-blush" to="bg-cream" />

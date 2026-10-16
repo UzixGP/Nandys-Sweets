@@ -2,8 +2,9 @@
 
 import { useState, useSyncExternalStore, type FormEvent, type ReactNode } from "react";
 import { site } from "@/content/site";
+import { fill, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { mailtoLink, whatsappLink } from "@/lib/contact";
+import { deliveryTerms, mailtoLink, whatsappLink } from "@/lib/contact";
 import { MailIcon, WhatsAppIcon } from "./icons";
 
 type Labels = Dictionary["form"];
@@ -12,6 +13,9 @@ type Fields = {
   name: string;
   phone: string;
   date: string;
+  time: string;
+  fulfillment: "pickup" | "delivery";
+  address: string;
   servings: string;
   flavor: string;
   size: string;
@@ -25,11 +29,20 @@ const empty: Fields = {
   name: "",
   phone: "",
   date: "",
+  time: "",
+  fulfillment: "pickup",
+  address: "",
   servings: "",
   flavor: "",
   size: "",
   budget: "",
   details: "",
+};
+
+/** "15:30" -> "3:30 PM" for the message, which is read on a phone. */
+const to12h = (time: string) => {
+  const [h, m] = time.split(":").map(Number);
+  return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`;
 };
 
 /** Local date as YYYY-MM-DD, used to block past pickup dates. */
@@ -48,6 +61,8 @@ function validate(values: Fields, t: Labels) {
   if (!values.name.trim()) errors.name = t.errors.required;
   if (!values.date) errors.date = t.errors.required;
   else if (values.date < today()) errors.date = t.errors.dateFuture;
+  if (!values.time) errors.time = t.errors.required;
+  if (values.fulfillment === "delivery" && !values.address.trim()) errors.address = t.errors.required;
   const servings = Number(values.servings);
   if (!values.servings) errors.servings = t.errors.required;
   else if (!Number.isInteger(servings) || servings < 1) errors.servings = t.errors.servings;
@@ -55,11 +70,28 @@ function validate(values: Fields, t: Labels) {
   return errors;
 }
 
-function buildMessage(values: Fields, t: Labels) {
+/** "2030-06-14" -> "sábado, 14 de junio de 2030" / "Saturday, June 14, 2030". */
+const longDate = (date: string, lang: Locale) => {
+  const [y, m, d] = date.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString(lang === "es" ? "es-US" : "en-US", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};
+
+function buildMessage(values: Fields, t: Labels, lang: Locale) {
   const rows: [string, string][] = [
     [t.name, values.name],
     [t.phone, values.phone],
-    [t.date, values.date],
+    [t.date, values.date && longDate(values.date, lang)],
+    [t.time, values.time && to12h(values.time)],
+    [
+      t.fulfillmentShort,
+      fill(values.fulfillment === "delivery" ? t.deliveryMessage : t.pickupMessage, deliveryTerms),
+    ],
+    [t.address, values.fulfillment === "delivery" ? values.address : ""],
     [t.servings, values.servings],
     [t.flavor, values.flavor],
     [t.size, values.size],
@@ -72,13 +104,13 @@ function buildMessage(values: Fields, t: Labels) {
   return [t.message.intro, "", ...lines].join("\n");
 }
 
-export function CustomCakeForm({ labels: t }: { labels: Labels }) {
+export function CustomCakeForm({ labels: t, lang }: { labels: Labels; lang: Locale }) {
   const [values, setValues] = useState<Fields>(empty);
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [sent, setSent] = useState(false);
   const minDate = useToday();
 
-  const update = (name: FieldName, value: string) => {
+  const update = <K extends FieldName>(name: K, value: Fields[K]) => {
     setValues((v) => ({ ...v, [name]: value }));
     if (errors[name]) setErrors((e) => ({ ...e, [name]: undefined }));
   };
@@ -91,7 +123,7 @@ export function CustomCakeForm({ labels: t }: { labels: Labels }) {
       document.getElementById(`cake-${firstInvalid}`)?.focus();
       return;
     }
-    const message = buildMessage(values, t);
+    const message = buildMessage(values, t, lang);
     if (channel === "whatsapp") {
       window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
     } else {
@@ -173,6 +205,60 @@ export function CustomCakeForm({ labels: t }: { labels: Labels }) {
           onChange={(e) => update("date", e.target.value)}
         />
       </Field>
+
+      <Field id="time" label={t.time} error={errors.time}>
+        <input
+          {...inputProps("time", errors.time)}
+          type="time"
+          step={900}
+          value={values.time}
+          onChange={(e) => update("time", e.target.value)}
+        />
+      </Field>
+
+      <fieldset className="sm:col-span-2">
+        <legend className="mb-1.5 font-display font-semibold">{t.fulfillment}</legend>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {(["pickup", "delivery"] as const).map((option) => (
+            <label
+              key={option}
+              className="flex cursor-pointer items-start gap-3 rounded-2xl border-2 border-cocoa/15 bg-white/70 px-4 py-3 transition has-[:checked]:border-cocoa has-[:checked]:bg-blush has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-cocoa"
+            >
+              <input
+                type="radio"
+                name="fulfillment"
+                value={option}
+                checked={values.fulfillment === option}
+                onChange={() => update("fulfillment", option)}
+                className="mt-1 size-4 accent-cocoa focus:outline-none"
+              />
+              <span>
+                <span className="block font-display font-semibold">{t[option]}</span>
+                <span className="block text-sm text-cocoa-soft">
+                  {fill(option === "pickup" ? t.pickupHint : t.deliveryHint, deliveryTerms)}
+                </span>
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      {values.fulfillment === "delivery" && (
+        <>
+          <p className="rounded-2xl bg-yellow px-4 py-3 text-sm font-semibold sm:col-span-2">
+            🚗 {fill(t.deliveryNote, deliveryTerms)}
+          </p>
+          <Field id="address" label={t.address} error={errors.address} wide>
+            <input
+              {...inputProps("address", errors.address)}
+              autoComplete="street-address"
+              placeholder={t.addressPlaceholder}
+              value={values.address}
+              onChange={(e) => update("address", e.target.value)}
+            />
+          </Field>
+        </>
+      )}
 
       <Field id="servings" label={t.servings} error={errors.servings}>
         <input

@@ -159,7 +159,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
               <ArrowIcon className="size-5" />
             </Link>
           </div>
-          {/* Display-only slideshow of every gallery photo (changes every 7s, no controls). */}
+          {/* Display-only slideshow of every gallery photo (changes every 4s, no controls). */}
           <PhotoSlideshow
             photos={promoPhotos}
             className="mx-auto aspect-[3/4] w-56 rotate-2 rounded-[2rem] bg-pink shadow-lift ring-8 ring-cream sm:w-64"

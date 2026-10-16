@@ -113,7 +113,7 @@ export const en: Dictionary = {
       },
       {
         title: "Time to celebrate!",
-        body: "We'll coordinate the pickup date and time for your cake.",
+        body: "We'll coordinate the date and time for pickup or delivery of your cake.",
       },
     ],
     pricingNote:
@@ -124,7 +124,20 @@ export const en: Dictionary = {
   form: {
     name: "Your name",
     phone: "Phone",
-    date: "Pickup date",
+    date: "Pickup or delivery date",
+    time: "Time",
+    fulfillment: "How would you like to get your order?",
+    fulfillmentShort: "Pickup or delivery",
+    pickup: "Pickup",
+    pickupHint: "In {area}",
+    delivery: "Delivery",
+    deliveryHint: "+{fee} · up to {radius} miles",
+    address: "Delivery address",
+    addressPlaceholder: "Street, city and ZIP code",
+    deliveryNote:
+      "We deliver within a {radius}-mile radius of East Orange for an extra {fee}. Before confirming your order, we'll check that your address is within the area.",
+    pickupMessage: "Pickup in {area}",
+    deliveryMessage: "Delivery (+{fee}, address to be confirmed)",
     servings: "Number of servings",
     flavor: "Preferred flavor",
     flavorPlaceholder: "E.g. vanilla, chocolate, tres leches…",
@@ -133,7 +146,7 @@ export const en: Dictionary = {
     budget: "Approximate budget",
     budgetPlaceholder: "E.g. $80",
     details: "Design and special instructions",
-    detailsPlaceholder: "Colors, theme, message on the cake, allergies…",
+    detailsPlaceholder: "Colors, theme, filling, message on the cake, allergies…",
     optional: "(optional)",
     photoNote:
       "Have a reference photo? Attach it in the WhatsApp chat after sending your request.",
@@ -155,6 +168,14 @@ export const en: Dictionary = {
       intro: "Hi Nandy's Sweets & Cakes! I'd like a quote for a custom cake:",
       emailSubject: "Custom cake request",
     },
+  },
+  pickupDelivery: {
+    title: "Pickup & delivery",
+    pickupTitle: "Pickup",
+    pickupBody: "Most of our orders are picked up in {area}.",
+    deliveryTitle: "Delivery",
+    deliveryBody:
+      "We also deliver within a {radius}-mile radius for an extra {fee}. We'll confirm your address first.",
   },
   policies: {
     title: "Payments & deposit",

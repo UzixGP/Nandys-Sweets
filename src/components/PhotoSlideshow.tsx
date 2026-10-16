@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { GalleryImage } from "@/lib/gallery";
 
-const INTERVAL_MS = 7000;
+const INTERVAL_MS = 4000;
 
 /**
  * Display-only slideshow: crossfades through the photos with no controls and no interaction.
@@ -43,7 +43,7 @@ export function PhotoSlideshow({ photos, className = "" }: { photos: GalleryImag
             placeholder="blur"
             blurDataURL={photo.blurDataURL}
             sizes="(min-width: 640px) 16rem, 14rem"
-            className={`object-cover transition-opacity duration-[1500ms] ease-in-out ${
+            className={`object-cover transition-opacity duration-1000 ease-in-out ${
               i === index ? "opacity-100" : "opacity-0"
             }`}
           />

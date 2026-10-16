@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/icons";
 import { PageHero } from "@/components/PageHero";
+import { PickupDeliveryInfo } from "@/components/PickupDeliveryInfo";
 import { Scallop } from "@/components/ui";
 import { site } from "@/content/site";
 import { hasLocale } from "@/i18n/config";
@@ -67,6 +68,7 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contact
             />
           )}
         </ul>
+        <PickupDeliveryInfo labels={dict.pickupDelivery} className="mt-14" />
       </section>
     </>
   );
