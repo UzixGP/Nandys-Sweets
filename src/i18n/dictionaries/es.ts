@@ -72,8 +72,8 @@ export const es = {
   },
   aboutTeaser: {
     eyebrow: "Nandy's Sweets & Cakes",
-    title: "Hecho con cariño, no en serie",
-    body: "Cada postre se prepara con dedicación, creatividad y atención al detalle. No es un producto en serie: es algo hecho pensando en ti y en tu celebración.",
+    title: "Hecho con cariño, no en producción",
+    body: "Cada postre se prepara con dedicación, creatividad y atención al detalle. No es un postre en producción masiva: es algo hecho pensando en ti y en tu celebración.",
     cta: "Conócenos",
   },
   contactStrip: {

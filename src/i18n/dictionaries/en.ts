@@ -74,7 +74,7 @@ export const en: Dictionary = {
   aboutTeaser: {
     eyebrow: "Nandy's Sweets & Cakes",
     title: "Made with care, not mass-produced",
-    body: "Every dessert is prepared with dedication, creativity and attention to detail. It's not a mass-produced product: it's made thinking of you and your celebration.",
+    body: "Every dessert is prepared with dedication, creativity and attention to detail. It's not a mass-produced dessert: it's made thinking of you and your celebration.",
     cta: "Get to know us",
   },
   contactStrip: {
