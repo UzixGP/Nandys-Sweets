@@ -11,7 +11,11 @@ npm install
 npm run dev        # http://localhost:3000 → redirects to /es
 npm run build      # production build (also type-checks)
 npm run lint
+npm run qa         # browser QA against `npx next start -p 3124` (screenshots in .qa/)
 ```
+
+Working with Claude Code? `CLAUDE.md` has the project context and business rules, and `.claude/skills/`
+has step-by-step skills: `add-gallery-photos`, `update-bakery-info`, `qa-site` and `ship-changes`.
 
 ## Where to edit things
 

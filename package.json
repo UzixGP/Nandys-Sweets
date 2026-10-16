@@ -9,7 +9,8 @@
     "lint": "eslint",
     "gallery": "node scripts/build-gallery.mjs",
     "predev": "npm run gallery",
-    "prebuild": "npm run gallery"
+    "prebuild": "npm run gallery",
+    "qa": "node scripts/qa.mjs"
   },
   "dependencies": {
     "next": "16.4.2",
