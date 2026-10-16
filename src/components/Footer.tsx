@@ -74,7 +74,7 @@ export function Footer({ dict, links, whatsappHref, emailHref, instagramUrl }: P
         </div>
         {/* Extra bottom padding keeps the floating WhatsApp button off the text on phones. */}
         <p className="border-t border-cocoa/10 px-4 pt-5 pb-24 text-center text-sm text-cocoa-soft sm:pb-5">
-          © <CopyrightYear /> Nandy&apos;s Sweets. {dict.footer.rights}
+          © <CopyrightYear /> Nandy&apos;s Sweets &amp; Cakes. {dict.footer.rights}
         </p>
       </div>
     </footer>

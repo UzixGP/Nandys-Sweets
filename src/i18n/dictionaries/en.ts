@@ -2,7 +2,7 @@ import type { Dictionary } from "./es";
 
 export const en: Dictionary = {
   meta: {
-    title: "Nandy's Sweets | Homemade Cakes & Desserts",
+    title: "Nandy's Sweets & Cakes | Homemade Desserts",
     description:
       "Custom cakes, chocoflan, gelatin mosaic and homemade desserts made with love for your celebrations.",
   },
@@ -24,7 +24,7 @@ export const en: Dictionary = {
     eyebrow: "Homemade, with love",
     title: "Sweet Moments, Made with Love.",
     subtitle:
-      "From beautiful custom cakes to delicious homemade desserts, Nandy's Sweets brings a little extra sweetness to every celebration.",
+      "From beautiful custom cakes to delicious homemade desserts, Nandy's Sweets & Cakes brings a little extra sweetness to every celebration.",
     primaryCta: "Explore Our Sweets",
     secondaryCta: "Request a Custom Cake",
   },
@@ -53,7 +53,7 @@ export const en: Dictionary = {
     close: "Close",
     wantThis: "I want one like this",
     wantThisMessage:
-      "Hi Nandy's Sweets! I saw this dessert in your gallery ({album}) and I'd like something similar: {url}",
+      "Hi Nandy's Sweets & Cakes! I saw this dessert in your gallery ({album}) and I'd like something similar: {url}",
   },
   product: {
     ask: "Ask",
@@ -63,7 +63,7 @@ export const en: Dictionary = {
     priceOnRequest: "Price on request",
     morePhotos: "See {count} photos",
     whatsappMessage:
-      "Hi Nandy's Sweets! I'm interested in: {name}. Could you tell me about availability and price?",
+      "Hi Nandy's Sweets & Cakes! I'm interested in: {name}. Could you tell me about availability and price?",
   },
   customPromo: {
     eyebrow: "Made just for you",
@@ -72,7 +72,7 @@ export const en: Dictionary = {
     cta: "Request my cake",
   },
   aboutTeaser: {
-    eyebrow: "Nandy's Sweets",
+    eyebrow: "Nandy's Sweets & Cakes",
     title: "Made with care, not mass-produced",
     body: "Every dessert is prepared with dedication, creativity and attention to detail. It's not a mass-produced product: it's made thinking of you and your celebration.",
     cta: "Get to know us",
@@ -83,7 +83,7 @@ export const en: Dictionary = {
     whatsapp: "Message us on WhatsApp",
     email: "Send an email",
     instagram: "Instagram",
-    genericMessage: "Hi Nandy's Sweets! I have a question:",
+    genericMessage: "Hi Nandy's Sweets & Cakes! I have a question:",
   },
   menuPage: {
     eyebrow: "Menu",
@@ -152,7 +152,7 @@ export const en: Dictionary = {
       again: "Make another request",
     },
     message: {
-      intro: "Hi Nandy's Sweets! I'd like a quote for a custom cake:",
+      intro: "Hi Nandy's Sweets & Cakes! I'd like a quote for a custom cake:",
       emailSubject: "Custom cake request",
     },
   },
@@ -166,7 +166,7 @@ export const en: Dictionary = {
     eyebrow: "About",
     title: "Homemade sweetness",
     intro:
-      "At Nandy's Sweets we believe every celebration deserves a special dessert. That's why every order is prepared with care, creativity and attention to detail.",
+      "At Nandy's Sweets & Cakes we believe every celebration deserves a special dessert. That's why every order is prepared with care, creativity and attention to detail.",
     values: [
       {
         title: "Handmade",

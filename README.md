@@ -1,6 +1,6 @@
-# Nandy's Sweets
+# Nandy's Sweets & Cakes
 
-Catalog website for Nandy's Sweets, a homemade bakery. Customers browse desserts and reach out over **WhatsApp** (primary) or **email**. There's no checkout. Spanish is the default language, with an English toggle.
+Catalog website for Nandy's Sweets & Cakes, a homemade bakery. Customers browse desserts and reach out over **WhatsApp** (primary) or **email**. There's no checkout. Spanish is the default language, with an English toggle.
 
 Built with Next.js (App Router), TypeScript and Tailwind CSS. Deployed on Vercel.
 

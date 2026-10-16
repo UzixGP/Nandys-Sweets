@@ -1,6 +1,6 @@
 export const es = {
   meta: {
-    title: "Nandy's Sweets | Pasteles y postres caseros",
+    title: "Nandy's Sweets & Cakes | Pasteles y postres caseros",
     description:
       "Pasteles personalizados, chocoflan, mosaico de gelatina y postres caseros hechos con amor para tus celebraciones.",
   },
@@ -22,7 +22,7 @@ export const es = {
     eyebrow: "Hecho en casa, con amor",
     title: "Momentos dulces, hechos con amor.",
     subtitle:
-      "Desde hermosos pasteles personalizados hasta deliciosos postres caseros, Nandy's Sweets le pone un toque extra de dulzura a cada celebración.",
+      "Desde hermosos pasteles personalizados hasta deliciosos postres caseros, Nandy's Sweets & Cakes le pone un toque extra de dulzura a cada celebración.",
     primaryCta: "Explorar Dulces",
     secondaryCta: "Pastel Personalizado",
   },
@@ -52,7 +52,7 @@ export const es = {
     close: "Cerrar",
     wantThis: "Quiero uno así",
     wantThisMessage:
-      "¡Hola Nandy's Sweets! Vi este postre en su galería ({album}) y me gustaría algo parecido: {url}",
+      "¡Hola Nandy's Sweets & Cakes! Vi este postre en su galería ({album}) y me gustaría algo parecido: {url}",
   },
   product: {
     ask: "Preguntar",
@@ -62,7 +62,7 @@ export const es = {
     priceOnRequest: "Precio a cotizar",
     morePhotos: "Ver {count} fotos",
     whatsappMessage:
-      "¡Hola Nandy's Sweets! Me interesa: {name}. ¿Me pueden dar información sobre disponibilidad y precio?",
+      "¡Hola Nandy's Sweets & Cakes! Me interesa: {name}. ¿Me pueden dar información sobre disponibilidad y precio?",
   },
   customPromo: {
     eyebrow: "Hecho a tu medida",
@@ -71,7 +71,7 @@ export const es = {
     cta: "Solicitar mi pastel",
   },
   aboutTeaser: {
-    eyebrow: "Nandy's Sweets",
+    eyebrow: "Nandy's Sweets & Cakes",
     title: "Hecho con cariño, no en serie",
     body: "Cada postre se prepara con dedicación, creatividad y atención al detalle. No es un producto en serie: es algo hecho pensando en ti y en tu celebración.",
     cta: "Conócenos",
@@ -82,7 +82,7 @@ export const es = {
     whatsapp: "Escríbenos por WhatsApp",
     email: "Enviar un correo",
     instagram: "Instagram",
-    genericMessage: "¡Hola Nandy's Sweets! Tengo una pregunta:",
+    genericMessage: "¡Hola Nandy's Sweets & Cakes! Tengo una pregunta:",
   },
   menuPage: {
     eyebrow: "Menú",
@@ -151,7 +151,7 @@ export const es = {
       again: "Hacer otra solicitud",
     },
     message: {
-      intro: "¡Hola Nandy's Sweets! Me gustaría cotizar un pastel personalizado:",
+      intro: "¡Hola Nandy's Sweets & Cakes! Me gustaría cotizar un pastel personalizado:",
       emailSubject: "Solicitud de pastel personalizado",
     },
   },
@@ -165,7 +165,7 @@ export const es = {
     eyebrow: "Nosotros",
     title: "Dulzura hecha en casa",
     intro:
-      "En Nandy's Sweets creemos que cada celebración merece un postre especial. Por eso cada pedido se prepara con cuidado, creatividad y atención al detalle.",
+      "En Nandy's Sweets & Cakes creemos que cada celebración merece un postre especial. Por eso cada pedido se prepara con cuidado, creatividad y atención al detalle.",
     values: [
       {
         title: "Hecho a mano",
